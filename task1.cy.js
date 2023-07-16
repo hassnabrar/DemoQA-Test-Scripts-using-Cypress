@@ -3,13 +3,12 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     // failing the test
     return false
   })
-
   describe('DemoQA Form Test', () => {
     it('fills out the form and closes the modal', () => {
+      cy.viewport(750, 600)
       cy.visit('https://demoqa.com/')
       cy.contains('Forms').click()
       cy.contains('Practice Form').click()
-  
       cy.get('#firstName').type('Cowlar')
       cy.get('#lastName').type('Developer')
       cy.get('#userEmail').type('qaengineer@cowlar.com')
@@ -18,15 +17,12 @@ Cypress.on('uncaught:exception', (err, runnable) => {
       cy.get('#subjectsInput').type('Computer Science').type('{enter}')
       cy.get('[for="hobbies-checkbox-3"]').click()
       cy.get('#currentAddress').type('Address 1')
-      //cy.get('#state').invoke('show').type('NCR')
-      //cy.get('#state').type('NCR', {force: true})
-      cy.contains('Last name')  
-      .click({force: true})
-      .type("Test LLC");  
-      cy.get('#city').type('Delhi')
-  
+      cy.contains('Select State')
+      .type("NCR {enter}");  
+      cy.contains('Select City')
+      .type("Delhi{enter}"); 
+      //cy.get('#city').type('Delhi')
       cy.get('#submit').click()
-  
       cy.get('.modal-content').within(() => {
         cy.contains('Cowlar')
         cy.contains('Developer')
@@ -38,10 +34,9 @@ Cypress.on('uncaught:exception', (err, runnable) => {
         cy.contains('Address 1')
         cy.contains('NCR')
         cy.contains('Delhi')
-  
-        cy.get('.close').click()
+        cy.get('[class="btn btn-primary"]').click({force: true}) 
+        // Used Force True because the close button on modal was covered with an ad. 
+        // I tried to get rid of the ad but wasn't able to do so.
       })
     })
-  })
-
-  
+  })  
