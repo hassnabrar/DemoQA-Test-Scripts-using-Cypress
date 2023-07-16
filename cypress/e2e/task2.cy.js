@@ -8,6 +8,7 @@ describe('Interaction Page Tests', () => {
     cy.visit('https://demoqa.com/');})
 
   it('main page verification along with interaction page verification', () => {
+    cy.viewport(750, 750)
     cy.get('#fixedban').should('be.visible');
     cy.contains('Interactions').click();
     cy.contains('Elements').should('contain', 'Elements');
@@ -34,6 +35,7 @@ describe('Interaction Page Tests', () => {
     cy.get('[class="resizable-nolimit mt-4"] .react-resizable-handle').should('be.visible');
   });
   it('Checking if resizable box goes below 150 x 150 or not (This test should give error)', () => {
+    cy.viewport(750, 750)
     cy.contains('Interactions').click();
     cy.contains('Resizable').click();
     cy.get('[class="constraint-area"]').should('have.css', 'width', '149px');
