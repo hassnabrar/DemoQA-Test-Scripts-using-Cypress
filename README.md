@@ -1,2 +1,1 @@
-# SQA-Test
-Cowlar SQA Test on Cypress
+Testing my SQA knowledge of Cypress by performing automation testing of DemoQA
